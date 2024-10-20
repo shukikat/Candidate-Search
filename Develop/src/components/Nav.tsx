@@ -1,5 +1,6 @@
 import {Link, useLocation} from 'react-router-dom';
 import '../index.css'
+import SavedCandidates from '../pages/SavedCandidates.tsx';
 
 
 const Nav = () => {
@@ -23,7 +24,7 @@ const Nav = () => {
 
       <li className="nav-tab">
         <Link
-          to="/Potential Candidates"
+          to="/SavedCandidates"
           
           className={currentPage === '/PotentialCandiates' ? 'nav-link active' : 'nav-link'}
         >
