@@ -2,16 +2,38 @@ import { useState, useEffect } from 'react';
 import { searchGithub, searchGithubUser } from '../api/API';
 import Candidate from '../interfaces/Candidate.interface';
 
+
 //need to get the response from GitHubuser
 const CandidateSearch = () => {
+  //need a useState for array of candidates received from searchGitHub
+ const [candidates, setCandidates]=useState<Candidate[]>([]);
  const [candidate, setCandidate]=useState<Candidate | null>(null);
- const [username, setUsername]=useState('');
+ const [selectedUsername, setSelectedUsername]=useState('');
+
+ useEffect(() => {
+  console.log('GitHub Token:', import.meta.env.VITE_GITHUB_TOKEN);
+}, []);
+
+ useEffect (()=> {
+  const fetchCandidates=async ()=> {
+    try {
+      const data=await searchGithub();
+      setCandidates(data);
+    }
+    catch (error){
+      console.log('Error fetching candidates', error);
+    }
+  };
+
+  fetchCandidates();
+
+ }, []);
 
   useEffect (()=> {
     const fetchCandidate=async ()=>{
-      if (username) {
+      if (selectedUsername) {
         try {
-          const data=await searchGithubUser(username);
+          const data=await searchGithubUser(selectedUsername);
     
     if (data && data.login) {
     
@@ -39,19 +61,21 @@ const CandidateSearch = () => {
   };
 
   fetchCandidate();
-}, [username]); 
+}, [selectedUsername]); 
 
   // return 
   // <h1>Candidate Search</h1>;
   return (
     <div>
       <h1>Candidate Search</h1>
-      <input
-        type="text"
-        placeholder="Enter GitHub username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)} // Update username state
-      />
+      <ul>
+        {candidates.map((candidate)=> (
+          <li key={candidate.username} onClick={()=>setSelectedUsername(candidate.username)}>
+
+            {candidate.name}({candidate.username})
+          </li>
+        ))}
+      </ul>
       {candidate && (
         <div>
           <h2>{candidate.name}</h2>
@@ -67,6 +91,7 @@ const CandidateSearch = () => {
       )}
     </div>
   );
+
 
 
   
