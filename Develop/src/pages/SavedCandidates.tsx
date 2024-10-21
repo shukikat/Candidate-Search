@@ -30,6 +30,12 @@ const SavedCandidates = () => {
         <tbody>
           <td>Avatar</td>
           <td>Name</td>
+          <td>UserName</td>
+          <td>Location</td>
+          <td>Email</td>
+          <td>Company</td>
+          {/* need to remove item from array if - clicked */}
+          <button onClick={()=> saveCandidateForHire(candidate)}>-</button>
 
         </tbody>
         {/* <tbody>
