@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { searchGithub, searchGithubUser } from '../api/API';
 import Candidate from '../interfaces/Candidate.interface';
+import saveCandidateForHire from '../components/localStorage';
+import '../index.css'
 
 
 //need to get the response from GitHubuser
@@ -87,8 +89,15 @@ const CandidateSearch = () => {
           <a href={candidate.html_url} target="_blank" rel="noopener noreferrer">
             View Profile
           </a>
+          <button onClick={()=> saveCandidateForHire(candidate)}>+</button>
+          <button>-</button>
         </div>
+        
       )}
+      <button>Test +</button>
+      <button>Test -</button>
+      
+
     </div>
   );
 

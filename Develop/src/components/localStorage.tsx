@@ -6,13 +6,14 @@ import CandidateSearch from '../pages/CandidateSearch'
 //need to continue to save 
 
 //save candidates to an array
-function saveCandidateForHire(candidate){
+function saveCandidateForHire(candidate: string | null){
     let candidates=JSON.parse(localStorage.getItem('candidates')) || [];
-    if (!candidates(c=>c.id===candidate.id)) {
+    //looks for matching user in the array--i not there array is updated
+    if (!candidates.some(c=>c.username===candidate.username)) {
 
-        candidate.push(candidate);
+        candidates.push(candidate);
 
-   localStorage.setItem(candidates, JSON.stringify(candidates));
+   localStorage.setItem('candidates', JSON.stringify(candidates));
 
     }
 
@@ -21,6 +22,8 @@ function saveCandidateForHire(candidate){
     }
 }
 
+
+export default saveCandidateForHire
 
 
 
