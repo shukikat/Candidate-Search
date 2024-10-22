@@ -1,5 +1,7 @@
+import Candidate from '../interfaces/Candidate.interface';
 
 const searchGithub = async () => {
+  console.log(import.meta.env.VITE_GITHUB_TOKEN)
   try {
     const start = Math.floor(Math.random() * 100000000) + 1;
     // console.log(import.meta.env);
@@ -12,15 +14,31 @@ const searchGithub = async () => {
         },
       }
     );
+
+    if (!response.ok){
+      throw new Error('Invalid API response, check the network tab');
+    }
     // console.log('Response:', response);
     const data = await response.json();
-    if (!response.ok) {
-      throw new Error('invalid API response, check the network tab');
-    }
+   
     // console.log('Data:', data);
-    return data;
+  return data.map((obj:any) =>{
+
+    // const candidateForHire: Candidate = {
+    return {
+      name: obj.name,
+      username: obj.login,
+      location: obj.location,
+      avatar: obj.avatar_url, 
+      email: obj.email,
+      html_url: obj.html_url,
+      company: obj.company, 
+  
+      } as Candidate;
+//  return candidateForHire
+  });
   } catch (err) {
-    // console.log('an error occurred', err);
+    console.log('an error occurred', err);
     return [];
   }
 };
@@ -33,13 +51,13 @@ const searchGithubUser = async (username: string) => {
         Authorization: `token ${import.meta.env.VITE_GITHUB_TOKEN}`,
       },
     });
-    const data = await response.json();
+    // const data = await response.json();
     if (!response.ok) {
       throw new Error('invalid API response, check the network tab');
     }
-    return data;
+    return await response.json();
   } catch (err) {
-    // console.log('an error occurred', err);
+    console.log('an error occurred', err);
     return {};
   }
 };

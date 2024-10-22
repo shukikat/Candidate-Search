@@ -2,13 +2,13 @@
 //initial interface for candidate created
 interface Candidate {
 
-    name: string;
-    username: string;
-    location: string;
-    avatar: string; 
-    email: string;
-    html_url: string;
-    company:string;
+    name: string | null;
+    username: string  | null;
+    location: string | null;
+    avatar: string;
+    email?: string | null;
+    html_url: string | null;
+    company:string | null;
 
 
 
