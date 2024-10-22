@@ -47,7 +47,7 @@ const [candidateForHire, setCandidateForHire]=useState<Candidate | null>(null);
 
  }, []);
 
- //adding this variable to move to next candiate 
+ //adding this variable to move to set the index for array 
  const nextCandidate =() =>{
   if (candidates.length>0) {
     const nextIndex=(currentIndex + 1) % candidates.length;
@@ -79,11 +79,11 @@ const [candidateForHire, setCandidateForHire]=useState<Candidate | null>(null);
   <p>Username: {candidateForHire.username}</p>
   <p>Location: {candidateForHire.location || 'N/A'}</p>
           <img src={candidateForHire.avatar} alt={`${candidateForHire.name}'s avatar`} />
-          <p>Email: {candidateForHire.email || 'N/A'}</p>
+          <p>Email: {candidateForHire.html_url || 'N/A'}</p>
           <p>Company: {candidateForHire.company || 'N/A'}</p>
           <button onClick={saveToLocalStorage}>+</button>
           <button onClick={removeFromLocalStorage}>-</button>
-          <button onClick={nextCandidate}>Next Candidate</button>
+          
   
   </div>
     )}
@@ -160,7 +160,7 @@ const [candidateForHire, setCandidateForHire]=useState<Candidate | null>(null);
 
 //     </div>
 //   );
-
+//<button onClick={nextCandidate}>Next Candidate</button>
 
 
   
