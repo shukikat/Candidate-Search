@@ -1,6 +1,6 @@
 import {Link, useLocation} from 'react-router-dom';
 import '../index.css'
-import SavedCandidates from '../pages/SavedCandidates.tsx';
+// import SavedCandidates from '../pages/SavedCandidates.tsx';
 
 
 const Nav = () => {

@@ -3,7 +3,7 @@
 interface Candidate {
 
     name: string | null;
-    username: string  | null;
+    username: string;
     location: string | null;
     avatar: string;
     email?: string | null;
