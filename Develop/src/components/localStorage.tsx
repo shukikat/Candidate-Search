@@ -1,4 +1,4 @@
-import CandidateSearch from '../pages/CandidateSearch'
+// import CandidateSearch from '../pages/CandidateSearch'
 
 // //need to ensure that can save candidate to local storage
 // //contingent on logic if + button is saved 
@@ -23,7 +23,7 @@ import CandidateSearch from '../pages/CandidateSearch'
 // }
 
 const saveCandidateForHire = (candidate:any ) => {
-    const storedCandidates = JSON.parse(localStorage.getItem('candidates')) || [];
+    const storedCandidates = JSON.parse(localStorage.getItem('candidates') || '[]');
     storedCandidates.push(candidate);
     localStorage.setItem('candidates', JSON.stringify(storedCandidates));
   };

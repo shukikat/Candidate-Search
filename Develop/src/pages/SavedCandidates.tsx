@@ -56,19 +56,22 @@
 // };
 
 // export default SavedCandidates;
-import React, { useState, useEffect } from 'react';
-import saveCandidateForHire from '../components/localStorage';
+import { useState, useEffect } from 'react';
+// import saveCandidateForHire from '../components/localStorage';
+import Candidate from '../interfaces/Candidate.interface';
+
 
 const SavedCandidates = () => {
-  const [hireableCandidates, setHireableCandidates] = useState([]);
+  const [hireableCandidates, setHireableCandidates] = useState<Candidate[]>([]);
 
   useEffect(() => {
     // Load candidates from local storage on component mount
-    const storedCandidates = JSON.parse(localStorage.getItem('candidates')) || [];
-    setHireableCandidates(storedCandidates);
+    const storedCandidates=localStorage.getItem('candidates');
+    const parsedCandidates: Candidate[]= storedCandidates ? JSON.parse(storedCandidates):[];
+    setHireableCandidates(parsedCandidates);
   }, []);
 
-  const removeCandidate = (username) => {
+  const removeCandidate = (username: string) => {
     // Filter out the candidate to remove
     const updatedCandidates = hireableCandidates.filter(candidate => candidate.username !== username);
     setHireableCandidates(updatedCandidates);
@@ -99,7 +102,7 @@ const SavedCandidates = () => {
             <tr key={candidate.username}>
               <td><img src={candidate.avatar} alt={`${candidate.name}'s avatar`} style={{ width: '50px' }} /></td>
               <td>{candidate.name}</td>
-              <td>{candidate.username}</td>
+              <td>{candidate.username || 'N/A'}</td>
               <td>{candidate.location || 'N/A'}</td>
               <td>{candidate.html_url || 'N/A'}</td>
               <td>{candidate.company || 'N/A'}</td>
