@@ -1,10 +1,7 @@
 // import saveCandidateForHire from "../components/localStorage";
 // import React from 'react'
 
-// //need to ensure that data from local storage renders in applicable page 
-// //extract data from local storage (via index in array)
-// //each row should be saved candidate
-// //need code to remove 
+
 // const SavedCandidates = () => {
 //   const hireableCandidates=JSON.parse(localStorage.getItem('candidates') ||null);
 //   if (!hireableCandidates || hireableCandidates.length===0){
@@ -55,7 +52,11 @@
 //   );
 // };
 
-// export default SavedCandidates;
+// //need to ensure that data from local storage renders in applicable page 
+// //extract data from local storage (via index in array)
+// //each row should be saved candidate
+// //need code to remove 
+
 import { useState, useEffect } from 'react';
 // import saveCandidateForHire from '../components/localStorage';
 import Candidate from '../interfaces/Candidate.interface';
@@ -82,6 +83,7 @@ const SavedCandidates = () => {
     return <p>There are no candidates saved</p>;
   }
 
+  //renders data on the page
   return (
     <>
       <h1>Potential Candidates</h1>
