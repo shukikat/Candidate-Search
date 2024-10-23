@@ -5,23 +5,25 @@ import saveCandidateForHire from '../components/localStorage';
 import '../index.css';
 
 
-//need to get the response from GitHubuser
+
 const CandidateSearch = () => {
   //need a useState for array of candidates received from searchGitHub
  const [candidates, setCandidates]=useState<Candidate[]>([]);
  //need to build up array 
  const [currentIndex, setCurrentIndex]=useState(0)
 //  const [candidate, setCandidate]=useState<Candidate | null>(null);
+//uses Candidate interface to determine types
 const [candidateForHire, setCandidateForHire]=useState<Candidate | null>(null);
 //  const [selectedUsername, setSelectedUsername]=useState('');
- //added 15/16
+
  const [loading, setLoading] = useState(true);
  const [error, setError] = useState('');
 
+//how to handle serach gitHub response
 
  useEffect (()=> {
   const fetchCandidates=async ()=> {
-    //adding this with feedback
+    //adding this with feedback to handle loading of page
     setLoading(true);
     try {
       const data=await searchGithub();
@@ -34,7 +36,7 @@ const [candidateForHire, setCandidateForHire]=useState<Candidate | null>(null);
   }
     catch (error){
       console.log('Error fetching candidates', error);
-      //adding this line
+      //adding this line to handle issue when resonse is not received 
       setError('Failed to load candidates');
     } 
     //added this to stop loading behavior 
@@ -47,7 +49,7 @@ const [candidateForHire, setCandidateForHire]=useState<Candidate | null>(null);
 
  }, []);
 
- //adding this variable to move to set the index for array 
+ //adding this variable to move to next candidate add to the array 
  const nextCandidate =() =>{
   if (candidates.length>0) {
     const nextIndex=(currentIndex + 1) % candidates.length;
@@ -55,6 +57,7 @@ const [candidateForHire, setCandidateForHire]=useState<Candidate | null>(null);
     setCandidateForHire(candidates[nextIndex]);
   }
  };
+ //save candidate to hire to local storage and move to next candidate 
  const saveToLocalStorage =()=>{
   if (candidateForHire) {
     saveCandidateForHire(candidateForHire);
@@ -62,13 +65,18 @@ const [candidateForHire, setCandidateForHire]=useState<Candidate | null>(null);
   }
  };
 
+
+ //just requires move to next candidate 
  const removeFromLocalStorage =()=>{
   nextCandidate();
  };
 
+ //loading and unexpected error behavior 
  if(loading) return <p>Loading Candidates...</p>;
  if (error) return <p>{error}</p>;
 
+ //below behavior handles how data wil be rendered also accounts for is some fields are null
+ //also accounts for what elements save to local storage and does not add to local storage 
  return (
   <div>
 
@@ -91,79 +99,6 @@ const [candidateForHire, setCandidateForHire]=useState<Candidate | null>(null);
  );
 };
 
-//   useEffect (()=> {
-//     const fetchCandidate=async ()=>{
-//       if (selectedUsername) {
-//         try {
-//           const data=await searchGithubUser(selectedUsername);
-    
-//     if (data && data.login) {
-    
-
-//     const candidateForHire: Candidate ={
-//     name: data.name,
-//     username: data.login,
-//     location: data.location,
-//     avatar: data.avatar_url, 
-//     email: data.email,
-//     html_url: data.html_url,
-//     company: data.company, 
-
-//     };
-
-//     setCandidate(candidateForHire);
-//   } else {
-//     setCandidate(null);
-//   }
-// } catch (error) {
-//   console.log('Error fetching candidate', error);
-//   setCandidate (null);
-// }
-//     }
-//   };
-
-//   fetchCandidate();
-// }, [selectedUsername]); 
-
-//   // return 
-//   // <h1>Candidate Search</h1>;
-//   return (
-//     <div>
-//       <h1>Candidate Search</h1>
-//       <ul>
-//         {candidates.map((candidate)=> (
-//           <li key={candidate.username} onClick={()=>setSelectedUsername(candidate.username)}>
-
-//             {candidate.name}({candidate.username})
-//           </li>
-//         ))}
-//       </ul>
-//       {candidate && (
-//         <div>
-//           <h2>{candidate.name}</h2>
-//           <p>Username: {candidate.username}</p>
-//           <p>Location: {candidate.location}|| 'N/A'</p>
-//           <img src={candidate.avatar} alt={`${candidate.name}'s avatar`} />
-//           <p>Email: {candidate.email} || 'N/A' </p>
-//           <p>Company: {candidate.company} || 'N/A'</p>
-//           <a href={candidate.html_url} target="_blank" rel="noopener noreferrer">
-//             View Profile
-//           </a>
-//           <button onClick={()=> saveCandidateForHire(candidate)}>+</button>
-//           <button>-</button>
-//         </div>
-        
-//       )}
-//       <button>Test +</button>
-//       <button>Test -</button>
-      
-
-//     </div>
-//   );
-//<button onClick={nextCandidate}>Next Candidate</button>
 
 
-  
-
-// };
 export default CandidateSearch

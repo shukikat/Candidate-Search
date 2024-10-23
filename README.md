@@ -1,17 +1,17 @@
 # Candidate-Search
-This is a project designed to search for the most highly qualified candidates. 
+This project is designed to search for the most highly qualified candidates. 
 
 ## Description
 
-This project is an application coded with React, REACTDOM, and inititated with Vite in Typescript. In this application you are presented with potential candidates for a job. The candidate information includes their name, username, avatar, email, and html. As a recruiter (i.e., the user) you will have the option to save the candidate's information as potential candidate or reject them. When you choose the save a candidate, their information is saved into local storage.   
+This application is built with React, REACTDOM, and inititated with Vite in Typescript. In this application, you are presented with potential candidates for a job. The candidate information includes their name, username, avatar, email, and HTML. As a recruiter (i.e., the user) you will have the option to save the candidate's information as a potential candidate or reject them. When you choose to save the candidate, their information is saved into local storage.   
 
 
-The list of potential or saved candidates can be accessed in a table. From this table you have the option to remove them from the potential candidate list. You can access the search for candidates or potential candidates in my project by clicking on the navigation links in the header. 
+The list of potential or saved candidates can be accessed in a table. From this table you have the option to remove candidates from the potential candidate list. You can access the search for candidates or potential candidates in this project by clicking on the navigation links in the header. 
 
 
 ## Installation
 
-This project is coded using React. To run and initiate the app the user must install:
+This project is build using React. To run and initiate the app the user must install:
 
  * Vite using the command `createvite@latest`
  * React and REACTDOM using the command `npm install react react-dom`
@@ -27,10 +27,17 @@ To run this project:
 * Navigate to the directory of your project that contains the `package.json` file. 
 * Run the command `npm run dev` (this may vary based on scripts' specifics in your `package.json` scripts). 
 
-* Click on Home to access Candidate Search. In Home: 
-     * View Candidate information
-     * Click + button to save the candidate as a potential candidate 
-     * Click the - button to 
+ Click on Home to access Candidate Search. In Home: 
+     * View Candidate information.
+     * Click '+' button to save the candidate as a potential candidate and move to next available candidate.
+     * Click the '-' button to move to the next candidate.
+
+Click on Potential Candidates to access saved candidates. On this page: 
+     * View Candidates saved from Candidate Search.
+     * Click '-' button to remove candidate from potential candidate list. 
+    
+
+
     
 
 ## License
@@ -39,13 +46,13 @@ This project includes the MIT License.
 
 ## Contributions
 
-I received IMMENSE assistance from the Xpert Learning Assistant tool available through my Columbia Engineering Bootcamp account. This tool helped guide me through some difficulties, including error handling, conditional logic (mainly with Contact form functionality), evaluating code quality, and for loops to help code the Project and Portfolio compoments. In addition, I found this tutorial extremely helpful when learning more about the concept of nav and header lists. [React Navbar and Header Component | Tutorial-Hadyn Murray](https://www.youtube.com/watch?v=YwgdzwNYico). 
+This project was quite a challenge for me and I received  a great deal of assistance from the Xpert Learning Assistant tool available through my Columbia Engineering Bootcamp account. This tool helped guide me through some difficulties, including error handling, conditional logic and evaluating code quality. I also received additional assistance from ChatGPT on correcting typescript logic, implementing arrays in order to add and remove candidates from local storage, connecting to the server, and how to piece the all the functionality together.
 
-I also received assistance from my tutor for this project (name can be noted once permission is granted) to guide me through logic of implementing the Project component correctly within the Portfolio component, and from E Kathuria who helped me polish up the styling of the site. 
+I also received assistance from my tutor for this project (name can be noted once permission is granted) to guide me through logic of accessing the Githib API and how to render information from the API onto the page.
 
  This repository is available to the public. Please feel free to clone this repository, submit a pull request, and add any issues. You can contact me via GitHub or email!
 
-* [Link to DevPortfolio-in-React repository](https://github.com/shukikat/DevPortfolio-in-React)
+* [Link to Candidate Search repository](https://github.com/shukikat/Candidate-Search)
 
 * [My Email](mailto:kathuriashuki@gmail.com)
 
@@ -54,8 +61,16 @@ I also received assistance from my tutor for this project (name can be noted onc
 
 Example Test Cases:
 
-* 
+On Home Page (Candidate Search):
+* Click '+' or '-' button and ensure you are moved to the next candidate.
+* Click '+' and ensure that candidate information is saved to local storage.
+* Click '-' and ensure that candidate is not saved to local storage.
 
+
+On Potential Candidate page:
+* Candidates saved on home page display on table.
+* Candiates who were not saved do not display on table.
+* Click on '-' in row and ensure that candidate is removed from table and local storage.
 
 
 

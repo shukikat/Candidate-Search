@@ -1,5 +1,5 @@
 // TODO: Create an interface for the Candidate objects returned by the API
-//initial interface for candidate created
+//initial interface for candidate created nneded to account for null values for not required properties 
 interface Candidate {
 
     name: string | null;

@@ -21,7 +21,8 @@ const searchGithub = async () => {
     // console.log('Response:', response);
     const data = await response.json();
    
-    // console.log('Data:', data);
+   
+    //ensures that response will handle specific peoperties from response will be returned as Candidate
   return data.map((obj:any) =>{
 
     // const candidateForHire: Candidate = {
@@ -35,7 +36,7 @@ const searchGithub = async () => {
       company: obj.company, 
   
       } as Candidate;
-//  return candidateForHire
+
   });
   } catch (err) {
     console.log('an error occurred', err);
@@ -47,7 +48,7 @@ const searchGithubUser = async (username: string) => {
   try {
     const response = await fetch(`https://api.github.com/users/${username}`, {
       headers: {
-        // Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
+        // Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,--switched to token trying to trouble shoot 
         Authorization: `token ${import.meta.env.VITE_GITHUB_TOKEN}`,
       },
     });
